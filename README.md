@@ -15,18 +15,18 @@ cd golb && go build
 
 ## usage
 
-####init server with first node
+#### init server with first node
 ```
 ./golb -datafolder ./n0 -bootstrap -hport 8000 -rport 7000
 ```
 
-####join server
+#### join server
 ```
 ./golb -datafolder ./n1 -hport 8001 -rport 7001 -join <web_addr_of_any_node_in_cluster>
 ```
 
-####example
-######setup cluster
+#### example
+###### setup cluster
 ```
 # init cluster:
 ./golb -datafolder ./n0 -addr 127.0.0.1 -bootstrap -hport 8000 -rport 7000
