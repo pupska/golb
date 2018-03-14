@@ -217,7 +217,7 @@ func leaderUpdater(ch <-chan bool) {
 			//to_do add leader web addr to storage
 			fmt.Println("###########i WON!!!###############")
 			leader_addr := config.HTTPAddress.String()
-			push_new_leader(leader_addr)
+			pushNewLeader(leader_addr)
 			go kickUnresponcivePeers(done)
 		} else {
 			done <- true
@@ -225,7 +225,7 @@ func leaderUpdater(ch <-chan bool) {
 	}
 }
 
-func push_new_leader(addr string) {
+func pushNewLeader(addr string) {
 
 	event := &event{
 		Type:  "set",
@@ -239,6 +239,7 @@ func push_new_leader(addr string) {
 
 	applyFuture := serverNode.raft.Apply(eventBytes, 5*time.Second)
 	if err := applyFuture.Error(); err != nil {
+		fmt.Printf("failed to update %s as leader in raft cluster log", addr)
 		return
 	}
 }
