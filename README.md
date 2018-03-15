@@ -10,6 +10,8 @@ HTTP load balancer based on standart golang componenets and hashicorp implementa
 
 ```
 git clone https://github.com/pupska/golb.git
+go get github.com/hashicorp/raft
+go get github.com/hashicorp/raft-boltdb
 cd golb && go build
 ```
 
