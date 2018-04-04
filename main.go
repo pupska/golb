@@ -216,9 +216,9 @@ func leaderUpdater(ch <-chan bool) {
 		if v == true {
 			//to_do add leader web addr to storage
 			fmt.Println("###########i WON!!!###############")
-			leader_addr := config.HTTPAddress.String()
-			pushNewLeader(leader_addr)
-			go kickUnresponcivePeers(done)
+			leaderAddr := config.HTTPAddress.String()
+			pushNewLeader(leaderAddr)
+			go kickUnresponsivePeers(done)
 		} else {
 			done <- true
 		}
@@ -244,7 +244,7 @@ func pushNewLeader(addr string) {
 	}
 }
 
-func kickUnresponcivePeers(done chan bool) {
+func kickUnresponsivePeers(done chan bool) {
 	for {
 		select {
 		case <-done:
